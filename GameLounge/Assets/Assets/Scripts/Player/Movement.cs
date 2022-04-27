@@ -10,12 +10,6 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     CharacterController charContr;
     [SerializeField]
-    //public float g_Gravity = 9.8f;
-    //public float g_Speed = 5;
-    //public float g_JumpSpeed = 10;
-    float g_Time = 0;
-    float g_TimeJump = 0;
-    private Vector3 g_Move = new Vector3();
     static private Hero g_Hero = new Hero(5,10,20.8f);
     void Start()
     {
