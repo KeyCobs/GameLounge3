@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     CharacterController charContr;
     [SerializeField]
-    static private Hero g_Hero = new Hero(5,10,20.8f);
+    static private Hero g_Hero = new Hero(5,10);
     void Start()
     {
         charContr = GetComponent<CharacterController>();
@@ -19,20 +19,18 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // MovePlayer();
-
         g_Hero.SetPlayerMovement(charContr);
     }
 
     #region Comments
-    void MovePlayer()
-    {
+    //void MovePlayer()
+    //{
 
-        //g_Move = StopMovingPlayer(g_Move);
-        //g_Move = MovePlayer(g_Move);
-        //g_Move.y -= g_Gravity * Time.deltaTime;
-        //charContr.Move(g_Move * Time.deltaTime);
-    }
+    //    //g_Move = StopMovingPlayer(g_Move);
+    //    //g_Move = MovePlayer(g_Move);
+    //    //g_Move.y -= g_Gravity * Time.deltaTime;
+    //    //charContr.Move(g_Move * Time.deltaTime);
+    //}
 
     //private Vector3 MovePlayer(Vector3 move)
     //{

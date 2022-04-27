@@ -9,22 +9,21 @@ namespace Assets.Assets.Scripts.Player
 {
     internal class Hero : MonoBehaviour
     {
-        public Hero(int speed, int jumpSpeed, float gravity)
+        public Hero(int speed, int jumpSpeed)
         {
-            Init(speed, jumpSpeed, gravity);
+            Init(speed, jumpSpeed);
         }
 
-        private void Init(int speed, int jumpSpeed, float gravity)
+        private void Init(int speed, int jumpSpeed)
         {
+           
             m_Speed = speed;
             m_JumpSpeed = jumpSpeed;
-            m_Gravity = gravity;
-            m_Time = 0;
             m_TimeJump = 0;
 
             m_Move = new Vector3();
         }
-
+    
         enum HeroState
         {
             Walking,
@@ -33,11 +32,13 @@ namespace Assets.Assets.Scripts.Player
         }
         //public
         public int m_Speed { get; private set; }
+        
         public int m_JumpSpeed { get; private set; }
-        private float m_Gravity;
         private float m_Time;
         private float m_TimeJump;
         private Vector3 m_Move;
+
+
         //Todo
         public int m_HP;
         //public Gun m_Gun;
@@ -49,14 +50,14 @@ namespace Assets.Assets.Scripts.Player
         #region PlayerMovement
         public void SetPlayerMovement(CharacterController charcontr)
         {
-            m_Move = StopMovingPlayer(m_Move);
+            m_Move = StopMovingPlayer(m_Move,charcontr);
             m_Move = PlayerControl(charcontr);
-            m_Move.y -= m_Gravity * Time.deltaTime;
+            m_Move.y -= Gravity.g_Gravity * Time.deltaTime;
             charcontr.Move(m_Move * Time.deltaTime);
+            print(Gravity.g_Gravity);
         }
         private Vector3 PlayerControl(CharacterController charcontr)
         {
-            float setTime = 0.6f;
             float setJumpTimer = 0.5f;
             //switch
             if (Input.GetKeyDown(KeyCode.D))
@@ -72,28 +73,28 @@ namespace Assets.Assets.Scripts.Player
                 m_Move.y = m_JumpSpeed;
                 m_TimeJump = 0;
             }
-            if (Input.GetKeyDown(KeyCode.Space) && m_TimeJump > setJumpTimer && m_Gravity < 0)
+            if (Input.GetKeyDown(KeyCode.Space) && m_TimeJump > setJumpTimer && Gravity.g_Gravity < 0)
             {
                 m_Move.y = m_JumpSpeed;
                 m_TimeJump = 0;
             }
-            if (Input.GetKeyDown(KeyCode.F) && (m_Time > setTime))
+            if (Gravity.g_IsGravitySwitched)
             {
                 Vector3 rot = new Vector3(180.0f, 0.0f, 0.0f) { };
-                m_Gravity = -m_Gravity;
                 m_JumpSpeed = -m_JumpSpeed;
                 m_Move.y = 0;
-                m_Time = 0;
-                transform.Rotate(rot);
+                //transform.Rotate(rot); // Bug run time error bug fixing
                 m_TimeJump = -0.5f;
+                Gravity.g_IsGravitySwitched = false;
             }
+
+
 
             m_Time += Time.deltaTime;
             m_TimeJump += Time.deltaTime;
-            print(m_Move.y);
             return m_Move;
         }
-        private Vector3 StopMovingPlayer(Vector3 move)
+        private Vector3 StopMovingPlayer(Vector3 move, CharacterController charcontr)
         {
 
             bool stopHorizontal = ((Input.GetKeyUp(KeyCode.A) && !Input.GetKey(KeyCode.D)) || (Input.GetKeyUp(KeyCode.D) && !Input.GetKey(KeyCode.A)));
@@ -108,6 +109,11 @@ namespace Assets.Assets.Scripts.Player
             if (Input.GetKeyUp(KeyCode.S))
             {
                 move.z = 0;
+            }
+
+            if (charcontr.isGrounded)
+            {
+                move.y = 0;
             }
             return move;
         }
