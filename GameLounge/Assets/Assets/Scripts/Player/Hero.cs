@@ -54,7 +54,6 @@ namespace Assets.Assets.Scripts.Player
             m_Move = PlayerControl(charcontr);
             m_Move.y -= Gravity.g_Gravity * Time.deltaTime;
             charcontr.Move(m_Move * Time.deltaTime);
-            print(Gravity.g_Gravity);
         }
         private Vector3 PlayerControl(CharacterController charcontr)
         {
@@ -73,7 +72,7 @@ namespace Assets.Assets.Scripts.Player
                 m_Move.y = m_JumpSpeed;
                 m_TimeJump = 0;
             }
-            if (Input.GetKeyDown(KeyCode.Space) && m_TimeJump > setJumpTimer && Gravity.g_Gravity < 0)
+            else if (Input.GetKeyDown(KeyCode.Space) && m_TimeJump > setJumpTimer && Gravity.g_Gravity < 0)
             {
                 m_Move.y = m_JumpSpeed;
                 m_TimeJump = 0;
@@ -87,6 +86,7 @@ namespace Assets.Assets.Scripts.Player
                 m_TimeJump = -0.5f;
                 Gravity.g_IsGravitySwitched = false;
             }
+
 
 
 

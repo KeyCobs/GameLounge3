@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     CharacterController charContr;
     [SerializeField]
-    static private Hero g_Hero = new Hero(5,10);
+    static private Hero g_Hero = new Hero(5, 10);
     void Start()
     {
         charContr = GetComponent<CharacterController>();
@@ -19,87 +19,17 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            print(transform.position);
+            transform.position = new Vector3(0.0f, 2, -1.0f);
+            print(transform.position);
+        }
+        else
+        {
         g_Hero.SetPlayerMovement(charContr);
+
+        } 
     }
-
-    #region Comments
-    //void MovePlayer()
-    //{
-
-    //    //g_Move = StopMovingPlayer(g_Move);
-    //    //g_Move = MovePlayer(g_Move);
-    //    //g_Move.y -= g_Gravity * Time.deltaTime;
-    //    //charContr.Move(g_Move * Time.deltaTime);
-    //}
-
-    //private Vector3 MovePlayer(Vector3 move)
-    //{
-    //    float setTime = 0.6f;
-    //    float setJumpTimer = 0.5f;
-    //    //switch
-    //    if (Input.GetKeyDown(KeyCode.D))
-    //    {
-    //        move.x = g_Speed;
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.W))
-    //    {
-    //        move.z = g_Speed;
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.S))
-    //    {
-    //        move.z = -g_Speed;
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.A))
-    //    {
-    //        move.x = -g_Speed;
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Space) && charContr.isGrounded)
-    //    {
-    //        move.y = g_JumpSpeed;
-    //        g_TimeJump = 0;
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Space) && g_TimeJump > setJumpTimer && g_Gravity < 0)
-    //    {
-    //        move.y = g_JumpSpeed;
-    //        g_TimeJump = 0;
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.F) && (g_Time > setTime))
-    //    {
-    //        Vector3 rot = new Vector3(180.0f,0.0f,0.0f) { };
-    //        g_Gravity = -g_Gravity;
-    //        g_JumpSpeed = -g_JumpSpeed;
-    //        move.y = 0;
-    //        g_Time = 0;
-    //        transform.Rotate(rot);
-    //        g_TimeJump = -0.5f;
-    //    }
-
-
-
-    //    g_Time += Time.deltaTime;
-    //    g_TimeJump += Time.deltaTime;
-    //    print(move.y);
-    //    return move;
-    //}
-
-    //private Vector3 StopMovingPlayer(Vector3 move)
-    //{
-
-    //    bool stopHorizontal = ((Input.GetKeyUp(KeyCode.A) && !Input.GetKey(KeyCode.D)) ||( Input.GetKeyUp(KeyCode.D) && !Input.GetKey(KeyCode.A)));
-    //    if (stopHorizontal)
-    //    {
-    //        move.x = 0;
-    //    }
-    //    if (Input.GetKeyUp(KeyCode.W))
-    //    {
-    //        move.z = 0;
-    //    }
-    //    if (Input.GetKeyUp(KeyCode.S))
-    //    {
-    //        move.z = 0;
-    //    }
-    //    return move;
-    //}
-    #endregion
 }
 

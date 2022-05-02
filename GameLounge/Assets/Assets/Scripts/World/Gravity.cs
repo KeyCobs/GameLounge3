@@ -11,9 +11,6 @@ public class Gravity : MonoBehaviour
     static public bool g_IsGravitySwitched = false;
     private float g_Time = 0;
     // Start is called before the first frame update
-    CharacterController charContr;
-    [SerializeField]
-    static private Hero g_Hero = new Hero(5, 10);
     void Start()
     {
     }
