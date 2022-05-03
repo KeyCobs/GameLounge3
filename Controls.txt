@@ -1,0 +1,6 @@
+Movement = WASD
+Gravity switch = F
+Jump = Space
+Arrow = aiming
+Create GameObject (See Console) = Left Mouse
+Destroy GameObject (See Console) = V

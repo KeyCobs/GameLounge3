@@ -17,7 +17,7 @@ public class Aim : MonoBehaviour
     void Update()
     {
         ControlAimDirection();
-
+        MoveAim();
     }
 
     private void ControlAimDirection()
@@ -82,6 +82,13 @@ public class Aim : MonoBehaviour
 
         var angle = Mathf.Atan2(g_Aim.y,g_Aim.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
+    //this is only for testing puposes. The aim will start at the players location.
+    private void MoveAim()
+    {
+        Vector3 move = new Vector3(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y, -3.08f);
+        transform.position = move;
     }
 
 }
