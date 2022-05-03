@@ -14,6 +14,19 @@ public class Magic_Management : MonoBehaviour
         g_ListOfMagicBalls = new List<Magicball>();
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        print("Collision detected");
+        //foreach (var elem in g_ListOfMagicBalls)
+        //{
+        if (collision.gameObject.tag == "Objects")
+        {
+
+        }
+
+        //}
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -24,6 +37,7 @@ public class Magic_Management : MonoBehaviour
             CreateMagicBall(myMaterial);
         }
         UpdateMagicBall();
+
     }
     private void UpdateMagicBall()
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Magicball
+public class Magicball : MonoBehaviour
 {
     //public
     public Magicball(Vector3 speed, Material myMaterial)
@@ -54,6 +54,8 @@ public class Magicball
         m.RecalculateNormals();
 
         m_MagicBall.AddComponent<MeshRenderer>();
+        m_MagicBall.AddComponent<Rigidbody>();
+        m_MagicBall.AddComponent<BoxCollider>();
         m_MagicBall.AddComponent<MeshFilter>().mesh = m;
         m_MagicBall.GetComponent<MeshRenderer>().material = myMaterial;//.GetTexture("MagicBall");// = Resources.Load("Assets/Assets/Sprites/Keycobs_Test/Materials/MagicBall.mat", typeof(Material)) as Material;
     }
@@ -61,8 +63,22 @@ public class Magicball
     {
         FireBall
     }
+    void OnCollisionEnter(Collision collision)
+    {
+        print("Collision detected");
+        //foreach (var elem in g_ListOfMagicBalls)
+        //{
+        if (collision.gameObject.tag == "Objects")
+        {
+
+        }
+
+        //}
+    }
+    
     public void Movement()
     {
+
         m_Position += m_Speed;
         m_MagicBall.transform.position = m_Position; 
     }
@@ -71,8 +87,9 @@ public class Magicball
         GameObject.Destroy(m_MagicBall);
     }
 
+
+
     //Collision detection
-    //Movement
     //MaxRangeToPlayer
     public GameObject m_MagicBall;
     public MagicType m_Type { get; private set; }
