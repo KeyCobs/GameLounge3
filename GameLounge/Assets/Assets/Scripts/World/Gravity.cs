@@ -18,7 +18,6 @@ public class Gravity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // MovePlayer();
         float setTime = 0.6f;
         if (Input.GetKeyDown(KeyCode.F) && (g_Time > setTime))
         {

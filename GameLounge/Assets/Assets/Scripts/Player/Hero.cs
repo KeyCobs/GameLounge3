@@ -9,6 +9,7 @@ namespace Assets.Assets.Scripts.Player
 {
     internal class Hero : MonoBehaviour
     {
+        static public int g_Speed { get; private set; }
         public Hero(int speed, int jumpSpeed)
         {
             Init(speed, jumpSpeed);
@@ -17,7 +18,7 @@ namespace Assets.Assets.Scripts.Player
         private void Init(int speed, int jumpSpeed)
         {
            
-            m_Speed = speed;
+            g_Speed = speed;
             m_JumpSpeed = jumpSpeed;
             m_TimeJump = 0;
 
@@ -31,7 +32,6 @@ namespace Assets.Assets.Scripts.Player
             Jumping
         }
         //public
-        public int m_Speed { get; private set; }
         
         public int m_JumpSpeed { get; private set; }
         private float m_Time;
@@ -61,11 +61,11 @@ namespace Assets.Assets.Scripts.Player
             //switch
             if (Input.GetKeyDown(KeyCode.D))
             {
-                m_Move.x = m_Speed;
+                m_Move.x = g_Speed;
             }
             if (Input.GetKeyDown(KeyCode.A))
             {
-                m_Move.x = -m_Speed;
+                m_Move.x = -g_Speed;
             }
             if (Input.GetKeyDown(KeyCode.Space) && charcontr.isGrounded)
             {
@@ -82,7 +82,7 @@ namespace Assets.Assets.Scripts.Player
                 Vector3 rot = new Vector3(180.0f, 0.0f, 0.0f) { };
                 m_JumpSpeed = -m_JumpSpeed;
                 m_Move.y = 0;
-                //transform.Rotate(rot); // Bug run time error bug fixing
+                transform.Rotate(rot); // Bug run time error bug fixing
                 m_TimeJump = -0.5f;
                 Gravity.g_IsGravitySwitched = false;
             }

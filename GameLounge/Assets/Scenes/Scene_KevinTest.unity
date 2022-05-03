@@ -589,6 +589,7 @@ GameObject:
   - component: {fileID: 946570478}
   - component: {fileID: 946570482}
   - component: {fileID: 946570483}
+  - component: {fileID: 946570484}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -705,6 +706,18 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &946570484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946570477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecfa4b9167983a04d9722fca4cf1f14d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1020246926
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,8 +848,8 @@ GameObject:
   - component: {fileID: 1272869728}
   - component: {fileID: 1272869727}
   - component: {fileID: 1272869726}
-  - component: {fileID: 1272869730}
   - component: {fileID: 1272869731}
+  - component: {fileID: 1272869732}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -877,7 +890,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: a177b4dbe7f02a344bcdf1a40d4ebad2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -922,18 +935,6 @@ Transform:
   m_Father: {fileID: 777616713}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1272869730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1272869725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b9cba152e7178d48a8819c1c09f55a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!143 &1272869731
 CharacterController:
   m_ObjectHideFlags: 0
@@ -952,3 +953,15 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1272869732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272869725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a87093105f3834c86189d8a8d3d23b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
