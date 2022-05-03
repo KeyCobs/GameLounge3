@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Magic_Management : MonoBehaviour
 {
+    [SerializeField]
+    public Material myMaterial;
+
     List<Magicball> g_ListOfMagicBalls;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +21,7 @@ public class Magic_Management : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             print("Create");
-            CreateMagicBall();
+            CreateMagicBall(myMaterial);
         }
         UpdateMagicBall();
     }
@@ -30,6 +33,7 @@ public class Magic_Management : MonoBehaviour
         foreach (var elem in g_ListOfMagicBalls)
         {
             elem.Movement();
+            //Check if magic is still active
             if (!elem.m_IsActive || Input.GetKeyDown(KeyCode.V))
             {
                 print(g_ListOfMagicBalls.Count);
@@ -38,11 +42,13 @@ public class Magic_Management : MonoBehaviour
             }
         }
     }
-    private void CreateMagicBall()
+    private void CreateMagicBall(Material myMaterial)
     {
-        print("Magic ball created");
-        Vector3 mousePos = Input.mousePosition;
-        Magicball mb = new Magicball(mousePos);
+        //Calculating speed for the magicballs
+        Vector3 speed = Aim.g_Aim;
+        speed.x *= 6 * Time.deltaTime;
+        speed.y *= 6 * Time.deltaTime;
+        Magicball mb = new Magicball(speed, myMaterial);
         g_ListOfMagicBalls.Add(mb);
     }
     private void DestroyMagicBall(int indx)

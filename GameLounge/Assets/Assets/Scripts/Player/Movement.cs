@@ -9,7 +9,6 @@ public class Movement : MonoBehaviour
 {
     // Start is called before the first frame update
     CharacterController charContr;
-    [SerializeField]
     static private Hero g_Hero = new Hero(5, 10);
     void Start()
     {
