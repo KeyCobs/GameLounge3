@@ -79,10 +79,10 @@ namespace Assets.Assets.Scripts.Player
             }
             if (Gravity.g_IsGravitySwitched)
             {
-                //Vector3 rot = new Vector3(180.0f, 0.0f, 0.0f) { };
+                Vector3 rot = new Vector3(180.0f, 0.0f, 0.0f);
                 m_JumpSpeed = -m_JumpSpeed;
                 m_Move.y = 0;
-                //transform.Rotate(rot); // Bug run time error bug fixing
+                GameObject.Find("Player").transform.Rotate(rot); 
                 m_TimeJump = -0.5f;
                 Gravity.g_IsGravitySwitched = false;
             }

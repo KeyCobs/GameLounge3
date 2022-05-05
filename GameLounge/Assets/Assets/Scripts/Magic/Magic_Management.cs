@@ -6,26 +6,15 @@ public class Magic_Management : MonoBehaviour
 {
     [SerializeField]
     public Material myMaterial;
+    public GameObject myPrefab;
 
-    List<Magicball> g_ListOfMagicBalls;
+    List<GameObject> g_ListOfMagicBalls; //change G into M
     // Start is called before the first frame update
     void Start()
     {
-        g_ListOfMagicBalls = new List<Magicball>();
+        g_ListOfMagicBalls = new List<GameObject>();
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        print("Collision detected");
-        //foreach (var elem in g_ListOfMagicBalls)
-        //{
-        if (collision.gameObject.tag == "Objects")
-        {
-
-        }
-
-        //}
-    }
 
     // Update is called once per frame
     void Update()
@@ -33,7 +22,6 @@ public class Magic_Management : MonoBehaviour
         //time still need to multiply on movement
         if (Input.GetMouseButtonUp(0))
         {
-            print("Create");
             CreateMagicBall(myMaterial);
         }
         UpdateMagicBall();
@@ -46,29 +34,29 @@ public class Magic_Management : MonoBehaviour
 
         foreach (var elem in g_ListOfMagicBalls)
         {
-            elem.Movement();
+
+            //elem.Movement();
             //Check if magic is still active
-            if (!elem.m_IsActive || Input.GetKeyDown(KeyCode.V))
+            if (!elem.GetComponent<MagicBall>().m_IsActive)
             {
                 print(g_ListOfMagicBalls.Count);
                 DestroyMagicBall(g_ListOfMagicBalls.IndexOf(elem));
-                print(g_ListOfMagicBalls.Count);
             }
         }
     }
     private void CreateMagicBall(Material myMaterial)
     {
         //Calculating speed for the magicballs
-        Vector3 speed = Aim.g_Aim;
-        speed.x *= 6 * Time.deltaTime;
-        speed.y *= 6 * Time.deltaTime;
-        Magicball mb = new Magicball(speed, myMaterial);
-        g_ListOfMagicBalls.Add(mb);
+
+        GameObject ob = Instantiate(myPrefab,new Vector3(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y, -3.08f), Quaternion.identity);
+        //Magicball mb = new Magicball(speed, myMaterial,myPrefab);
+        ob.GetComponent<MagicBall>().Init();
+        g_ListOfMagicBalls.Add(ob);
     }
     private void DestroyMagicBall(int indx)
     {
         print("Magic ball destroyed");
-        g_ListOfMagicBalls[indx].DestroyMagicBall();
+        GameObject.Destroy(g_ListOfMagicBalls[indx]);
         g_ListOfMagicBalls.RemoveAt(indx);
     }
 }
