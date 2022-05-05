@@ -57,7 +57,7 @@ namespace Assets.Assets.Scripts.Player
         }
         private Vector3 PlayerControl(CharacterController charcontr)
         {
-            float setJumpTimer = 0.5f;
+            float setJumpTimer = 1.0f;
             //switch
             if (Input.GetKeyDown(KeyCode.D))
             {
@@ -67,12 +67,8 @@ namespace Assets.Assets.Scripts.Player
             {
                 m_Move.x = -g_Speed;
             }
-            if (Input.GetKeyDown(KeyCode.Space) && charcontr.isGrounded)
-            {
-                m_Move.y = m_JumpSpeed;
-                m_TimeJump = 0;
-            }
-            else if (Input.GetKeyDown(KeyCode.Space) && m_TimeJump > setJumpTimer && Gravity.g_Gravity < 0)
+
+            if (Input.GetKeyDown(KeyCode.Space) && m_TimeJump > setJumpTimer)
             {
                 m_Move.y = m_JumpSpeed;
                 m_TimeJump = 0;
