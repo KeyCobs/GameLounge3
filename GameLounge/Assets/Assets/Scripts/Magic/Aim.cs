@@ -35,54 +35,36 @@ public class Aim : MonoBehaviour
         //1: right
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            g_AimLocked = true;
             g_Aim.x = 1;
+            g_Aim.y = 0;
         }//2: left
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            g_AimLocked = true;
+            g_Aim.y = 0;
             g_Aim.x = -1;
         }
         //3,4,5: up or up right or up left
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+       else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            g_AimLocked = true;
+            g_Aim.x = 0;
             g_Aim.y = 1;
         }//6,7,8: down or down right or down left
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            g_AimLocked = true;
+            g_Aim.x = 0;
             g_Aim.y = -1;
         }
     }
 
     private void AllKeyUps()
     {
-        //Checking if you not aiming
-        if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            g_AimLocked = false;
-            g_Aim.y = 0;
-        }
-        if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            //no need to put the x axis to 0 because it needs to be 1 or -1 left or right
-            g_Aim.x = 0;
-            g_AimLocked = false;
-        }
-        //if you are aiming
-        if (!g_AimLocked)
-        {
-            //not aiming
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                g_Aim.x = -1;
-            }
-            else if (Input.GetKeyDown(KeyCode.D))
-            {
-                g_Aim.x = 1;
-            }
-        }
+        ////Checking if you not aiming
+        //if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
+        //{
+        //    g_AimLocked = false;
+        //    g_Aim.y = 0;
+        //}
+
     }
 
     //this is only for testing puposes. The aim will start at the players location.

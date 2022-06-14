@@ -7,7 +7,8 @@ public class Magic_Management : MonoBehaviour
     [SerializeField]
     public Material myMaterial;
     public GameObject myPrefab;
-
+    private float currentTime = 0;
+    private bool isContinueing = false;
     List<GameObject> g_ListOfMagicBalls; //change G into M
     // Start is called before the first frame update
     void Start()
@@ -19,10 +20,30 @@ public class Magic_Management : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        currentTime += Time.deltaTime;
+        int cooldownTime = 1;
         //time still need to multiply on movement
-        if (Input.GetMouseButtonUp(0))
+        bool isArrowTrigger = Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow);
+        bool isArrowTriggerUp = Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow);
+        bool isTimeTrigger = cooldownTime <= currentTime;
+
+        if (isArrowTrigger)
         {
+            isContinueing = true;
+        }
+
+        if (isTimeTrigger && isContinueing)
+        {
+
+
+            currentTime = 0;
             CreateMagicBall(myMaterial);
+            
+        }
+        else if (isArrowTriggerUp)
+        {
+            isContinueing = false;
         }
         UpdateMagicBall();
 
